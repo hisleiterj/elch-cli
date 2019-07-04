@@ -150,7 +150,10 @@ namespace Elchwinkel.CLI
             {
                 if (e.InnerExceptions.Any(inner => inner is OperationCanceledException))
                     OnCommandCanceled(cmd);
-                else throw;
+                else if (e.InnerExceptions.Any(inner => inner is CmdArgException))
+                    OnCmdArgumentException(cmd, e.InnerExceptions.First(x => x is CmdArgException));
+                else
+                    OnUnhandledCommandException(cmd, e);
             }
             catch (Exception e)
             {
