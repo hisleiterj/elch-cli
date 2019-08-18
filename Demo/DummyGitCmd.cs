@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using Colorful;
+﻿using System;
+using System.Collections.Generic;
 using Elchwinkel.CLI;
+using Console = Colorful.Console;
 
 namespace Demo
 {

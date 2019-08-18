@@ -13,7 +13,7 @@ namespace Elchwinkel.CLI
         public Arg(string raw) => Raw = raw;
 
         public static implicit operator string(Arg x) => x.Raw;
-
+        public static Arg None => new Arg(null);
 
         public bool Equals(string other) => String.Equals(Raw, other, StringComparison.OrdinalIgnoreCase);
 

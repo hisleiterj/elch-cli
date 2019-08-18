@@ -38,13 +38,6 @@ namespace Elchwinkel.CLI
 
         public int Count => _raw.Count;
 
-        public Arg this[int index]
-        {
-            get
-            {
-                AssertAtLeast(index + 1);
-                return _raw[index];
-            }
-        }
+        public Arg this[int index] => index >= Count ? Arg.None : _raw[index];
     }
 }
