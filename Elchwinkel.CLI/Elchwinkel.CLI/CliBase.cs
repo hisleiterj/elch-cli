@@ -95,9 +95,16 @@ namespace Elchwinkel.CLI
         /// Must be Called to Run the Command Line Interface, i.e. allows the User to input Names and Arguments in order to execute <see cref="ICommand"/>s.
         /// After Calling this (blocking) Method, no other Thread should interfere with the Console Input/Output.
         /// </summary>
-        public void Run()
+        public void Run(string[] startupCommands = null)
         {
             _Initialize();
+            if(args != null)
+            {
+                foreach (var command in startupCommands)
+                {
+                    _ExecuteCmd(command);
+                }
+            }
             while (!_shutdownRequested)
             {
                 var input = ReadLine.Read(Prompt);
