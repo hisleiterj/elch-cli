@@ -24,7 +24,7 @@ namespace Elchwinkel.CLI
 
         protected CliBase()
         {
-            ColorScheme = ColorScheme.Dark;
+            
         }
 
         /// <summary>
@@ -36,7 +36,6 @@ namespace Elchwinkel.CLI
             get => _colorScheme;
             set
             {
-
                 _colorScheme = value;
                 Colorful.Console.BackgroundColor = value.Background;
                 Console.Clear();
@@ -97,6 +96,7 @@ namespace Elchwinkel.CLI
         /// </summary>
         public void Run()
         {
+            ColorScheme = ColorScheme.Dark;
             _Initialize();
             while (!_shutdownRequested)
             {
@@ -105,6 +105,14 @@ namespace Elchwinkel.CLI
                 ReadLine.AddHistory(input);
                 _ExecuteCmd(input);
             }
+        }
+
+        /// <summary>
+        /// Called to run the Command Line Interface in non-interactive mode, i.e. executes a single <see cref="ICommand"/> and then exits.
+        /// </summary>
+        public void RunNonInteractive(string input)
+        {
+            _ExecuteCmd(input);
         }
 
         protected virtual void OnCommandCanceled(ICommand cmd) 
